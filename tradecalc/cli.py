@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import click
-from tradecalc.tradecalc import (
+from .tradecalc import (
     get_stop_loss_price,
     get_risk_per_unit,
     get_position_size,
