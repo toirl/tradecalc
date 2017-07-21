@@ -32,8 +32,22 @@ def test_buy():
     assert 'Stop Loss at price at 90.0$' in help_result.output
 
 
+def test_buy_false_sl():
+    runner = CliRunner()
+    help_result = runner.invoke(cli.main, ['buy', '100', '110', '10'])
+    assert help_result.exit_code == 1
+    assert 'In a buy order the stop must be lower' in help_result.output
+
+
 def test_sell():
     runner = CliRunner()
     help_result = runner.invoke(cli.main, ['sell', '100', '10', '10', '--relative-stop'])
     assert help_result.exit_code == 0
     assert 'Stop Loss at price at 110.0$' in help_result.output
+
+
+def test_sell_false_sl():
+    runner = CliRunner()
+    help_result = runner.invoke(cli.main, ['sell', '100', '90', '10'])
+    assert help_result.exit_code == 1
+    assert 'In a sell order the stop must be higher' in help_result.output
