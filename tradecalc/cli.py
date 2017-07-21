@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import sys
 import click
 from .tradecalc import (
     get_stop_loss_price,
@@ -20,6 +21,10 @@ def main(args=None):
 @click.option("--relative-stop", is_flag=True)
 def buy(price, stop, insert, relative_stop):
     """Calc max position for a buy order."""
+    if not relative_stop:
+        if price <= stop:
+            click.echo("In a buy order the stop must be lower than the buy price ")
+            sys.exit(1)
     sl_price = get_stop_loss_price(price, stop, relative_stop)
 
     # Max units we can buy
@@ -39,6 +44,10 @@ def buy(price, stop, insert, relative_stop):
 @click.option("--relative-stop", is_flag=True)
 def sell(price, stop, insert, relative_stop):
     """Calc max position for a sell order."""
+    if not relative_stop:
+        if price >= stop:
+            click.echo("In a sell order the stop must be higher than the sell price ")
+            sys.exit(1)
     sl_price = get_stop_loss_price(price, stop * -1, relative_stop)
 
     # Max units we can buy
