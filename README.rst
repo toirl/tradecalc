@@ -23,7 +23,7 @@ markets.
 
 
 * Free software: MIT license
-* Documentation: https://tracecalc.readthedocs.io
+* Documentation: http://tradecalc.readthedocs.io/en/latest/
 
 
 Features
