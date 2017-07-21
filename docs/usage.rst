@@ -5,11 +5,18 @@ To calculate your maximum position 3 variables must be known:
 
 1. The `buy/sell price` you want to buy/sell some asset.
 2. The `stop loss price`. The stop loss price is the price where you close your current position to reduce losses.
-3. Your `insert` You insert is the max amount of money you will set at risk to
-   loose in this order. This is typically 1%-2% percent of your total credit.
-   So if you want to to a trade with a maximum loss of 100$ in this trade, you
-   will need to have 100000$ as total credit following serious
-   moneymanagement.
+3. Your `insert`. You insert is the max amount of money you will set at risk to
+   loose in this order.
+
+.. important::
+
+        Following serious risk management you should only insert 1-2% of your total
+        credit per trade. This means to do a trade with risk of 100$ to loose you
+        should have 100000$ total credit in the back.
+
+        Do not confuse your insert with the value of the trade. Depending on
+        your stop loss the total value of your trade will be much higher than
+        your insert. See example below.
 
 Calculate position size
 -----------------------
