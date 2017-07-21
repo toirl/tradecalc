@@ -20,7 +20,7 @@ test_requirements = [
 
 setup(
     name='tradecalc',
-    version='0.1.1',
+    version='0.1.2',
     description="Collection of tools to calculate trading positions",
     long_description=readme + '\n\n' + history,
     author="Torsten Irländer",
