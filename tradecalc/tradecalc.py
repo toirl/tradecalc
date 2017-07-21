@@ -18,7 +18,7 @@ def get_stop_loss_price(price, stop, relative_stop=False):
     if relative_stop:
         sl_price = price - stop
     else:
-        sl_price = stop
+        sl_price = abs(stop)
     return sl_price
 
 
