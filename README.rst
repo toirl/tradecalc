@@ -24,6 +24,7 @@ markets.
 
 * Free software: MIT license
 * Documentation: http://tradecalc.readthedocs.io/en/latest/
+* Source: http://github.com/toirl/tradecalc
 
 
 Features
