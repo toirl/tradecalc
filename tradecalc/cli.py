@@ -15,18 +15,12 @@ def main(args=None):
 
 @click.command()
 @click.argument("price", type=float)
-@click.argument("risk", type=float)
+@click.argument("stop", type=float)
 @click.argument("insert", type=float)
-@click.option("--absolut-risk", is_flag=True)
-def buy(price, risk, insert, absolut_risk):
-    """Show the max size (and volume) of a position you can buy at a given
-    `price` with the calculated `risk` to loose your `insert`. The
-    position size is calculated by the current `price` and the `risk`
-    you want to backup (raising, falling prices) with a maximum loss of
-    `insert`. The risk is given in percent on default but may also be
-    provided as absolut values.
-    """
-    sl_price = get_stop_loss_price(price, risk, absolut_risk)
+@click.option("--relative-stop", is_flag=True)
+def buy(price, stop, insert, relative_stop):
+    """Calc max position for a buy order."""
+    sl_price = get_stop_loss_price(price, stop, relative_stop)
 
     # Max units we can buy
     position_size = get_position_size(insert, get_risk_per_unit(price, sl_price))
@@ -40,18 +34,12 @@ def buy(price, risk, insert, absolut_risk):
 
 @click.command()
 @click.argument("price", type=float)
-@click.argument("risk", type=float)
+@click.argument("stop", type=float)
 @click.argument("insert", type=float)
-@click.option("--absolut-risk", is_flag=True)
-def sell(price, risk, insert, absolut_risk):
-    """Show the max size (and volume) of a position you can sell at a given
-    `price` with the calculated `risk` to loose your `insert`. The
-    position size is calculated by the current `price` and the `risk`
-    you want to backup (raising, falling prices) with a maximum loss of
-    `insert`. The risk is given in percent on default but may also be
-    provided as absolut values.
-    """
-    sl_price = get_stop_loss_price(price, risk * -1, absolut_risk)
+@click.option("--relative-stop", is_flag=True)
+def sell(price, stop, insert, relative_stop):
+    """Calc max position for a sell order."""
+    sl_price = get_stop_loss_price(price, stop * -1, relative_stop)
 
     # Max units we can buy
     position_size = get_position_size(insert, get_risk_per_unit(price, sl_price))

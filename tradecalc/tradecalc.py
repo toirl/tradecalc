@@ -1,25 +1,24 @@
 # -*- coding: utf-8 -*-
 
 
-def get_stop_loss_price(price, risk, absolut_risk=False):
-    """Returns the stop loss price. The stop loss price is calculated
-    from the current `price` and the risk you want to backup in price
-    movement. The risk can be set in percent (default) or in absolut
-    values.
+def get_stop_loss_price(price, stop, relative_stop=False):
+    """Returns the stop loss price. The actual stop loss price is
+    calculated from the piven stop. The stop can be set in abosult
+    (default) or in relative values to the price.
 
-    Please note that the risk must be positive for BUY orders and
+    Please note that the stop must be positive for BUY orders and
     negative for SELL orders.
 
     :price: Current price you want to buy/sell.
-    :risk: Risk in sense of of the price raises or falls.
-    :absolut_risk: Flag that the risk is interpreted as absolut value
-    and not as percentage.
+    :stop: Stop price.
+    :relative_stop: Flag that the stop is interpreted as relative value
+    and not as absolut value.
     :returns: Price where to set the stop loss
     """
-    if absolut_risk:
-        sl_price = price - risk
+    if relative_stop:
+        sl_price = price - stop
     else:
-        sl_price = price - (price / 100 * risk)
+        sl_price = stop
     return sl_price
 
 

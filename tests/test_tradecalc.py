@@ -12,10 +12,10 @@ Tests for `tradecalc` module.
 def test_get_stop_loss_price():
     from tradecalc.tradecalc import get_stop_loss_price
     # BUY percentage
-    sl = get_stop_loss_price(150, 10)
+    sl = get_stop_loss_price(150, 135)
     assert sl == 135
     # SELL percentage
-    sl = get_stop_loss_price(150, -10)
+    sl = get_stop_loss_price(150, 165)
     assert sl == 165
     # BUY absolut
     sl = get_stop_loss_price(150, 5, True)
