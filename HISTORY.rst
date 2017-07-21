@@ -2,6 +2,14 @@
 History
 =======
 
+0.1.2 (2017-07-21)
+------------------
+Bugfix release.
+
+Fixed:
+
+* Wrong calculation of volume and position size in case of sell orders.
+
 0.1.1 (2017-07-21)
 ------------------
 Maintainance release.
