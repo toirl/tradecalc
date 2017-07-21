@@ -18,17 +18,18 @@ Tradecalc
      :alt: Updates
 
 
-Collection of tools to calculate trading positions
+CLI tool to calculate trading positions for risk management on different
+markets.
 
 
 * Free software: MIT license
-* Documentation: https://tradecalc.readthedocs.io.
 
 
 Features
 --------
 
-* TODO
+* Calculate max position size you can buy/sell at a given price, with a
+  limited risk.
 
 Credits
 ---------
