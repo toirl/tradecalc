@@ -8,34 +8,36 @@ test_tradecalc
 Tests for `tradecalc` module.
 """
 
-import pytest
 
-from contextlib import contextmanager
-from click.testing import CliRunner
+def test_get_stop_loss_price():
+    from tradecalc.tradecalc import get_stop_loss_price
+    # BUY percentage
+    sl = get_stop_loss_price(150, 10)
+    assert sl == 135
+    # SELL percentage
+    sl = get_stop_loss_price(150, -10)
+    assert sl == 165
+    # BUY absolut
+    sl = get_stop_loss_price(150, 5, True)
+    assert sl == 145
+    # SELL absolut
+    sl = get_stop_loss_price(150, -5, True)
+    assert sl == 155
 
-from tradecalc import tradecalc
-from tradecalc import cli
+
+def test_get_risk_per_unit():
+    from tradecalc.tradecalc import get_risk_per_unit
+    rpu = get_risk_per_unit(100, 90)
+    assert rpu == 10
 
 
-@pytest.fixture
-def response():
-    """Sample pytest fixture.
-    See more at: http://doc.pytest.org/en/latest/fixture.html
-    """
-    # import requests
-    # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
+def test_get_position_size():
+    from tradecalc.tradecalc import get_position_size
+    ps = get_position_size(100, 5)
+    assert ps == 20
 
 
-def test_content(response):
-    """Sample pytest test function with the pytest fixture as an argument.
-    """
-    # from bs4 import BeautifulSoup
-    # assert 'GitHub' in BeautifulSoup(response.content).title.string
-def test_command_line_interface():
-    runner = CliRunner()
-    result = runner.invoke(cli.main)
-    assert result.exit_code == 0
-    assert 'tradecalc.cli.main' in result.output
-    help_result = runner.invoke(cli.main, ['--help'])
-    assert help_result.exit_code == 0
-    assert '--help  Show this message and exit.' in help_result.output
+def test_get_position_value():
+    from tradecalc.tradecalc import get_position_value
+    ps = get_position_value(100, 20)
+    assert ps == 2000
